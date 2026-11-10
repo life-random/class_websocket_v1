@@ -1,4 +1,4 @@
-package com.spring.class_websocket_v1.chap;
+package com.spring.class_websocket_v1.sse;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
