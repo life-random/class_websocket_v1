@@ -1,4 +1,4 @@
-package com.spring.class_websocket_v1.websocket;
+package com.spring.class_websocket_v1.stomp;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -13,14 +13,17 @@ public class ChatService {
 
     private final ChatRepository chatRepository;
 
-    public List<Chat> findAll() {
-        Sort asc = Sort.by(Sort.Direction.ASC, "id");
-        return  chatRepository.findAll(asc);
+    public List<Chat> findByRoomId(Integer roomId) {
+        return chatRepository.findByRoomId(roomId);
     }
 
     @Transactional
-    public Chat save(String msg) {
-        Chat chat = Chat.builder().msg(msg).build();
+    public Chat save(Integer roomId, String Sender, String msg) {
+        Chat chat = Chat.builder()
+                .roomId(roomId)
+                .sender(Sender)
+                .msg(msg)
+                .build();
         return chatRepository.save(chat);
     }
 }
